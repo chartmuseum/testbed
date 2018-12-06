@@ -13,3 +13,5 @@ RUN apk add --no-cache bash git make py3-pip && \
     helm init --client-only && \
     helm repo list | sed -n '1!p' | awk '{print $1}' | xargs helm repo remove
 
+WORKDIR /go/src/github.com/helm/chartmuseum
+
