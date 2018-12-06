@@ -4,8 +4,6 @@
 
 `chartmuseum/testbed:latest`
 
-Docker testbed for continuous integration.
-
 The Docker image contains everything needed to build, test, and release ChartMuseum, including
 
 - Bash, Git, Make
