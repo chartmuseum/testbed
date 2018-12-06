@@ -1,0 +1,11 @@
+version: '1.0'
+steps:
+  build_image:
+    type: build
+    image_name: chartmuseum/testbed
+  push_to_registry:
+    type: push
+    candidate: '${{build_image}}'
+    image_name: chartmuseum/testbed
+    tag: latest
+    registry: dockerhub
