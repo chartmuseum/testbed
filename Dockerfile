@@ -3,8 +3,6 @@ FROM golang:1.11.2-alpine3.8
 ENV HELM_VERSION="v2.11.0"
 ENV HELM_HOME="/root/.helm"
 
-WORKDIR /go/src/github.com/helm/chartmuseum
-
 RUN apk add --no-cache bash git make py3-pip && \
     go get -u github.com/golang/dep/cmd/dep && \
     pip3 install awscli requests robotframework && \
