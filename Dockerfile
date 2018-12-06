@@ -1,21 +1,20 @@
 FROM golang:1.11.2-alpine3.8
 
 ENV HELM_VERSION="v2.11.0"
-ENV HELM_HOME="/go/src/github.com/helm/chartmuseum/.helm"
+ENV HELM_HOME="/home/chartmuseum/.helm"
 
 WORKDIR /go/src/github.com/helm/chartmuseum
 
 RUN apk add --no-cache bash git make py3-pip && \
     go get -u github.com/golang/dep/cmd/dep && \
-    pip3 install virtualenv awscli && \
-    mkdir -p testbin/ && \
+    pip3 install awscli requests robotframework && \
+    mkdir -p ../testbin/ && \
     wget -q https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz -O - | \
-        tar -xzO linux-amd64/helm > testbin/helm && \
-    chmod +x testbin/helm && \
-    testbin/helm init --client-only && \
-    testbin/helm repo list | sed -n '1!p' | awk '{print $1}' | xargs testbin/helm repo remove && \
-    virtualenv -p $(which python3) .venv/ && \
-    .venv/bin/python .venv/bin/pip install requests==2.20.1 robotframework==3.0.4 && \
-    adduser -D -u 1000 chartmuseum
+        tar -xzO linux-amd64/helm > /usr/local/bin/helm && \
+    chmod +x /usr/local/bin/helm && \
+    helm init --client-only && \
+    helm repo list | sed -n '1!p' | awk '{print $1}' | xargs helm repo remove && \
+    adduser -D -u 1000 chartmuseum && \
+    chown -R chartmuseum:chartmuseum $HELM_HOME
 
 USER 1000
