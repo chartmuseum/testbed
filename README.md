@@ -23,6 +23,7 @@ git clone git@github.com:helm/chartmuseum.git
 
 docker run --rm -it --entrypoint bash \
   -v $(pwd)/chartmuseum:/go/src/github.com/helm/chartmuseum \
+  -w /go/src/github.com/helm/chartmuseum \
   chartmuseum/testbed:latest \
   -c 'make test'
 ```
