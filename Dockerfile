@@ -1,7 +1,7 @@
 FROM golang:1.11.2-alpine3.8
 
 ENV HELM_VERSION="v2.11.0"
-ENV HELM_HOME="/home/chartmuseum/.helm"
+ENV HELM_HOME="/root/.helm"
 
 WORKDIR /go/src/github.com/helm/chartmuseum
 
@@ -13,8 +13,5 @@ RUN apk add --no-cache bash git make py3-pip && \
         tar -xzO linux-amd64/helm > /usr/local/bin/helm && \
     chmod +x /usr/local/bin/helm && \
     helm init --client-only && \
-    helm repo list | sed -n '1!p' | awk '{print $1}' | xargs helm repo remove && \
-    adduser -D -u 1000 chartmuseum && \
-    chown -R chartmuseum:chartmuseum $HELM_HOME
+    helm repo list | sed -n '1!p' | awk '{print $1}' | xargs helm repo remove
 
-USER 1000
