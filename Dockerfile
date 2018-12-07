@@ -12,4 +12,3 @@ RUN apk add --no-cache bash git make py3-pip && \
     chmod +x /usr/local/bin/helm && \
     helm init --client-only && \
     helm repo list | sed -n '1!p' | awk '{print $1}' | xargs helm repo remove
-
