@@ -1,4 +1,4 @@
-FROM golang:1.12.0-alpine3.9
+FROM golang:1.12.3-alpine3.9
 
 ENV HELM_VERSION="v2.13.0"
 ENV HELM_HOME="/root/.helm"
