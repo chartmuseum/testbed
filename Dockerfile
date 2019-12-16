@@ -3,7 +3,7 @@ FROM golang:1.13.4-alpine3.10
 ENV HELM_VERSION="v2.16.1"
 ENV HELM_HOME="/root/.helm"
 
-RUN apk add --no-cache bash git make py3-pip && \
+RUN apk add --no-cache bash git make py3-pip coreutils && \
     go get -u github.com/golang/dep/cmd/dep && \
     pip3 install awscli requests robotframework && \
     mkdir -p ../testbin/ && \
