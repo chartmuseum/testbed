@@ -1,6 +1,6 @@
-FROM golang:1.13.4-alpine3.10
+FROM golang:1.14.1-alpine3.11
 
-ENV HELM_VERSION="v2.16.1"
+ENV HELM_VERSION="v2.16.4"
 ENV HELM_HOME="/root/.helm"
 
 RUN apk add --no-cache bash git make py3-pip coreutils && \
